@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="row">
+        <% @ideas.each do |idea| %>
+        <div class="col-lg-4 py-2">
+            <div class="post-card">
+                <h3><%= link_to idea.title, idea_path(idea) %></h3>
+                <div><%= idea.description %></div>
+                <div class="post-card-footer"></div>
+            </div>
+        </div>
+        <% end %>
+    </div>
+</div>
