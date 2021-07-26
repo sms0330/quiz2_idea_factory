@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Like.delete_all
 Review.delete_all
 Idea.delete_all
 User.delete_all
@@ -36,10 +37,13 @@ users = User.all
                 Review.new(body: Faker::GreekPhilosophers.quote, user: users.sample)
             end
         end
+        i.likers = users.shuffle.slice(0, rand(users.count))
 end
 ideas = Idea.all
 reviews = Review.all
+likes = Like.all
 
 puts Cowsay.say("Generated #{users.count} users", :tux)
 puts Cowsay.say("Generated #{ideas.count} ideas", :koala)
 puts Cowsay.say("Generated #{reviews.count} reviews", :beavis)
+puts Cowsay.say("Generated #{likes.count} likes", :cow)

@@ -37,6 +37,7 @@ class IdeasController < ApplicationController
     def show
         @review = Review.new
         @reviews = @idea.reviews.order(created_at: :desc)
+        @like = @idea.likes.find_by(user: current_user)
     end
   
     def destroy
