@@ -2,6 +2,7 @@
     <div class="post-card">
         <h3><%= link_to idea.title, idea_path(idea) %></h3>
         <div><%= idea.description %></div>
+        <a href>By <%= idea.user&.full_name || "Deleted" %></a>
     </div>
     <hr>
 <% end %>

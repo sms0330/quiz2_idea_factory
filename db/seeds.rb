@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+Review.delete_all
 Idea.delete_all
 User.delete_all
 
@@ -30,8 +30,16 @@ users = User.all
         updated_at: created_at,
         user: users.sample
         )
+
+        if i.persisted? 
+            i.reviews = rand(0..15).times.map do
+                Review.new(body: Faker::GreekPhilosophers.quote, user: users.sample)
+            end
+        end
 end
 ideas = Idea.all
+reviews = Review.all
 
 puts Cowsay.say("Generated #{users.count} users", :tux)
 puts Cowsay.say("Generated #{ideas.count} ideas", :koala)
+puts Cowsay.say("Generated #{reviews.count} reviews", :beavis)
