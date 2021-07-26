@@ -1,6 +1,11 @@
 <h1>Idea Show Page</h1>
 <h2><%= @idea.title %></h2>
 <p><%= @idea.description %></p>
-<p>Created at:<%= @idea.created_at %></p>
-<%= link_to 'Edit', edit_idea_path(@idea) %>
-<%= link_to 'Delete', idea_path(@idea), method: :delete, data: { confirm: "Are you sure?" } %>
+<div>Created at:<%= @idea.user&.full_name || "Deleted" %></div>
+<% if can? :crud, @idea %>
+    <%= link_to 'Edit', edit_idea_path(@idea) %>
+<% end %>
+<% if can? :crud, @idea %>
+    <%= button_to 'Delete', idea_path(@idea), method: :delete, data: { confirm: "Are you sure?" } %>
+<% end %>
+<hr/>

@@ -17,9 +17,20 @@
       </span>
 
       <span class="nav justify-content-end">
+        <div class="nav-item"><% if user_signed_in? %>
+        Hello <%= link_to current_user.full_name %>,
+        <%= link_to "Logout", session_path, method: :delete, data: {confirm: "Are you sure you want to log out?"}%>
+        <% else %>
+          <%= link_to "Login", new_session_path %> |
+          <%= link_to "Sign Up", new_user_path %>
+        <% end %></div>
         <div class="nav-item"><%= link_to "New Idea", new_idea_path %></div>
       </span>
     </nav>
+
+ 
+    
+    <% flash[:notice] || flash[:alert] %>
     <%= yield %>
   </body>
 </html>
