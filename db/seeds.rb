@@ -10,6 +10,15 @@ Review.delete_all
 Idea.delete_all
 User.delete_all
 
+PASSWORD='0414'
+super_user=User.create(
+    first_name: 'Joseph',
+    last_name: 'Son',
+    email: 'sms0330@gmail.com',
+    password: PASSWORD,
+    is_admin: true
+)
+
 10.times do
     first_name = Faker::Name.first_name
     last_name = Faker::Name.last_name
