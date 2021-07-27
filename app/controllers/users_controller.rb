@@ -13,6 +13,10 @@ class UsersController < ApplicationController
         end
     end
 
+    def index
+        @ideas = current_user.ideas
+    end
+
     def dashboard
         if current_user.is_admin?
           @user_number = User.all.count
@@ -21,7 +25,7 @@ class UsersController < ApplicationController
         else
           redirect_to root_path, alert: "Only administrator can access it!"
         end
-      end   
+    end   
 
     private
     def user_params

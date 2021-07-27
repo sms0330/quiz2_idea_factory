@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     get :liked, on: :collection
   end
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :index]
   resource :session, only: [:new, :create, :destroy]
 
   get("/dashboard", to:"users#dashboard")
