@@ -1,0 +1,17 @@
+<h2>My Ideas</h2>
+<% @ideas.each do |idea| %>
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title"><%= link_to idea.title, idea_path(idea) %></h3>
+            <p class="card-text"><%= idea.description %></p>
+            <a href="#" class="card-link">By <%= idea.user&.full_name || "Deleted" %></a>
+            <small class="card-text">
+            <% if idea.likes.find_by(user: current_user).present?  && can?(:destroy, idea.likes.find_by(user: current_user)) %>
+                    <%= button_to '👎 Unlike', like_path(idea.likes.find_by(user: current_user)), method: :delete %>
+                <% else %>
+                    <%= button_to '👍 Like', idea_likes_path(idea), method: :post %>
+                <% end %>
+            </small>
+            <div class="text-end">Members: <%= idea.likers.count%> | 👍 likes</div>
+    </div>
+<% end %>
