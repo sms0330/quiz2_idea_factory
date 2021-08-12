@@ -14,7 +14,11 @@ class UsersController < ApplicationController
     end
 
     def index
-        @ideas = current_user.ideas
+        if current_user
+            @ideas = current_user.ideas
+        else
+            redirect_to root_path, notice: "Please, Sign-In!"
+        end
     end
 
     def dashboard

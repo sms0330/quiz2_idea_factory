@@ -47,7 +47,7 @@ class IdeasController < ApplicationController
   
     private
     def find_idea
-        @idea = Idea.find params[:id]
+        @idea ||= Idea.find params[:id]
     end
   
     def idea_params
